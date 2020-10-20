@@ -70,7 +70,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(ULFE)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(crypt1ct3ch)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -1127,12 +1127,12 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 160  // KP3S bed is 180x180, but with my current custom extruder the bed has been reduced to 160x176 <-- I WILL FIX THIS! :)
-#define Y_BED_SIZE 176  // KP3S bed is 180x180, but with my current custom extruder the bed has been reduced to 160x176 <-- I WILL FIX THIS! :)
+#define X_BED_SIZE 180
+#define Y_BED_SIZE 180
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
-#define Y_MIN_POS -4 // My current custom extruder is 2mm outside bed. Default KP3S is 0 <-- I need to fix this.
+#define Y_MIN_POS 0 
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1240,8 +1240,8 @@
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
-#define AUTO_BED_LEVELING_UBL
-//#define MESH_BED_LEVELING
+//#define AUTO_BED_LEVELING_UBL
+#define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
@@ -1512,7 +1512,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_HOTEND 205
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
