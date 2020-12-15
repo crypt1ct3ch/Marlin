@@ -35,7 +35,7 @@
 
 extern lv_group_t * g;
 static lv_obj_t * scr;
-static lv_obj_t * fw_type, *board; //*fw_version;
+static lv_obj_t * fw_type, *board, *author; //*fw_version;
 
 #define ID_A_RETURN   1
 
@@ -111,8 +111,13 @@ void lv_draw_about(void) {
 
   board = lv_label_create(scr, NULL);
   lv_obj_set_style(board, &tft_style_label_rel);
-  lv_label_set_text(board, "Board: " BOARD_INFO_NAME);
+  lv_label_set_text(board, "Board: Kingroon KP3 V1.2"); //BOARD_INFO_NAME);
   lv_obj_align(board, NULL, LV_ALIGN_CENTER, 0, -60);
+
+  author = lv_label_create(scr, NULL);
+  lv_obj_set_style(author, &tft_style_label_rel);
+  lv_label_set_text(author, "Author: " STRING_CONFIG_H_AUTHOR);
+  lv_obj_align(author, NULL, LV_ALIGN_CENTER, 0, -100);
 }
 
 void lv_clear_about() {

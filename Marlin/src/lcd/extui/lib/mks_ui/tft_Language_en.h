@@ -48,7 +48,7 @@
 #define MACHINE_TYPE_CNOFIG_EN      "Machine settings"
 #define MOTOR_CONFIG_EN             "Motor settings"
 #define MACHINE_LEVELING_CONFIG_EN  "Leveling settings"
-#define ADVANCE_CONFIG_EN           "Adavance settings"
+#define ADVANCE_CONFIG_EN           "Advance settings"
 
 #define MACHINE_CONFIG_TITLE_EN     "Machine Settings"
 #define MACHINE_TYPE_EN             "Machine type"

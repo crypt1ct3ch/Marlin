@@ -31,7 +31,8 @@
   #error "MKS Robin nano supports up to 2 hotends / E-steppers. Comment out this line to continue."
 #endif
 
-#define BOARD_INFO_NAME "MKS Robin Nano"
+//#define BOARD_INFO_NAME "MKS Robin Nano"
+#define BOARD_INFO_NAME "Kingroon KP3 V1.2"
 
 //
 // Release PB4 (Y_ENABLE_PIN) from JTAG NRST role
