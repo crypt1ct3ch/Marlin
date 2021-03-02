@@ -862,6 +862,13 @@ void GUI_RefreshPage() {
       filament_dialog_handle();
       TERN_(MKS_WIFI_MODULE, wifi_scan_handle());
       break;
+    case LEVELING_UI:
+    if (temps_update_flag) {
+        temps_update_flag = false;
+        disp_extx_temp();
+        disp_bed_tempx(); 
+      }
+      break;
     case MESHLEVELING_UI:
       break;
     case HARDWARE_TEST_UI:
@@ -999,6 +1006,7 @@ void clear_cur_ui() {
     case STEPS_UI:                    lv_clear_step_settings(); break;
     case ACCELERATION_UI:             lv_clear_acceleration_settings(); break;
     case JERK_UI:                     TERN_(HAS_CLASSIC_JERK, lv_clear_jerk_settings()); break;
+    case ADVANCEK_UI:                 lv_clear_advancek_settings();
     case MOTORDIR_UI:                 break;
     case HOMESPEED_UI:                break;
     case NOZZLE_CONFIG_UI:            break;
@@ -1106,6 +1114,7 @@ void draw_return_ui() {
       #if HAS_CLASSIC_JERK
         case JERK_UI:                   lv_draw_jerk_settings(); break;
       #endif
+      case ADVANCEK_UI:                  lv_draw_advancek_settings(); break;
       case MOTORDIR_UI:                 break;
       case HOMESPEED_UI:                break;
       case NOZZLE_CONFIG_UI:            break;

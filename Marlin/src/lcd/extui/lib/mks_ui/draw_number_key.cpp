@@ -140,6 +140,10 @@ static void disp_key_value() {
       #endif
       break;
 
+      case KAdvance:
+        sprintf_P(public_buf_m, PSTR("%s"), dtostrf(planner.extruder_advance_K[0], 1, 1, str_1));
+        break;
+
     case Xstep:
       sprintf_P(public_buf_m, PSTR("%s"), dtostrf(planner.settings.axis_steps_per_mm[X_AXIS], 1, 1, str_1));
       break;
@@ -357,6 +361,9 @@ static void set_value_confirm() {
       #if HAS_CLASSIC_JERK
         planner.max_jerk[E_AXIS] = atof(key_value);
       #endif
+      break;
+    case KAdvance:
+      planner.extruder_advance_K[0] = atof(key_value);
       break;
     case Xstep:
       planner.settings.axis_steps_per_mm[X_AXIS] = atof(key_value);

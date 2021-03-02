@@ -156,6 +156,7 @@ typedef struct machine_common_disp{
   const char *MaxFeedRateConf;
   const char *AccelerationConf;
   const char *JerkConf;
+  const char *AdvanceKConf;
   const char *StepsConf;
   const char *MotorDirConf;
   const char *HomeFeedRateConf;
@@ -185,6 +186,9 @@ typedef struct machine_common_disp{
   const char *Y_Jerk;
   const char *Z_Jerk;
   const char *E_Jerk;
+
+  const char *AdvanceKConfTitle;
+  const char *AdvanceK;
 
   const char *StepsConfTitle;
   const char *X_Steps;
@@ -420,6 +424,8 @@ typedef struct leveling_menu_disp {
   const char *position3;
   const char *position4;
   const char *position5;
+  const char *temp1;
+  const char *bed_temp;
 
   char *back;
 } leveling_menu_def;

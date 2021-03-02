@@ -62,6 +62,7 @@
 #include "draw_acceleration_settings.h"
 #include "draw_number_key.h"
 #include "draw_jerk_settings.h"
+#include "draw_advancek_settings.h"
 #include "draw_pause_position.h"
 #include "draw_step_settings.h"
 #include "draw_tmc_current_settings.h"
@@ -310,6 +311,7 @@ typedef enum {
   STEPS_UI,
   ACCELERATION_UI,
   JERK_UI,
+  ADVANCEK_UI,
   MOTORDIR_UI,
   HOMESPEED_UI,
   NOZZLE_CONFIG_UI,
@@ -366,6 +368,8 @@ typedef enum {
   YJerk,
   ZJerk,
   EJerk,
+
+  KAdvance,
 
   Xstep,
   Ystep,

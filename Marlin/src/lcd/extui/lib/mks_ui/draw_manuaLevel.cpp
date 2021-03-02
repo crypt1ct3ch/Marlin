@@ -25,12 +25,20 @@
 
 #include "draw_ui.h"
 #include <lv_conf.h>
+//#include "draw_printing.h"
 
 #include "../../../../gcode/queue.h"
+#include "../../../../module/temperature.h"
 #include "../../../../inc/MarlinConfig.h"
+#include "../../../../MarlinCore.h"
+#include "../../../../gcode/gcode.h"
 
 extern lv_group_t *g;
 static lv_obj_t *scr;
+static lv_obj_t *labelExt1;
+#if HAS_HEATED_BED
+  static lv_obj_t *labelBed;
+#endif
 
 enum {
   ID_M_POINT1 = 1,
@@ -73,6 +81,34 @@ void lv_draw_manualLevel() {
   lv_big_button_create(scr, "F:/bmp_leveling4.bin", leveling_menu.position4, BTN_X_PIXEL * 3 + INTERVAL_V * 4, titleHeight, event_handler, ID_M_POINT4);
   lv_big_button_create(scr, "F:/bmp_leveling5.bin", leveling_menu.position5, INTERVAL_V, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_M_POINT5);
   lv_big_button_create(scr, "F:/bmp_return.bin", common_menu.text_back, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_MANUAL_RETURN);
+  // Create image buttons
+  lv_obj_t *buttonExt1 = lv_img_create(scr, nullptr);
+  lv_img_set_src(buttonExt1, "F:/bmp_ext1_state.bin");
+  lv_obj_set_pos(buttonExt1, 205, 186);
+  #if HAS_HEATED_BED
+    lv_obj_t *buttonBedstate = lv_img_create(scr, nullptr);
+    lv_img_set_src(buttonBedstate, "F:/bmp_bed_state.bin");
+    lv_obj_set_pos(buttonBedstate, 205, 235);
+  #endif
+  labelExt1 = lv_label_create(scr, 250, 196, nullptr);
+  #if HAS_HEATED_BED
+    labelBed = lv_label_create(scr, 250, 246, nullptr);
+  #endif
+
+  disp_extx_temp();
+  disp_bed_tempx();
+}
+
+void disp_extx_temp() {
+  sprintf(public_buf_l, leveling_menu.temp1, (int)thermalManager.temp_hotend[0].celsius, (int)thermalManager.temp_hotend[0].target);
+  lv_label_set_text(labelExt1, public_buf_l);
+}
+
+void disp_bed_tempx() {
+  #if HAS_HEATED_BED
+    sprintf(public_buf_l, leveling_menu.bed_temp, (int)thermalManager.temp_bed.celsius, (int)thermalManager.temp_bed.target);
+    lv_label_set_text(labelBed, public_buf_l);
+  #endif
 }
 
 void lv_clear_manualLevel() {

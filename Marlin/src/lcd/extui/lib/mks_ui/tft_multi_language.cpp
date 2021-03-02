@@ -629,6 +629,7 @@ void machine_setting_disp() {
     machine_menu.MaxFeedRateConf       = MAXFEEDRATE_CONF_EN;
     machine_menu.AccelerationConf      = ACCELERATION_CONF_EN;
     machine_menu.JerkConf              = JERKCONF_EN;
+    machine_menu.AdvanceKConf          = ADVANCEK_EN;
     machine_menu.StepsConf             = STEPSCONF_EN;
     machine_menu.TMCcurrentConf        = TMC_CURRENT_EN;
     machine_menu.TMCStepModeConf       = TMC_STEP_MODE_EN;
@@ -661,6 +662,9 @@ void machine_setting_disp() {
     machine_menu.Y_Jerk        = Y_JERK_EN;
     machine_menu.Z_Jerk        = Z_JERK_EN;
     machine_menu.E_Jerk        = E_JERK_EN;
+
+    machine_menu.AdvanceKConfTitle = ADVANCEK_CONF_TITLE_EN;
+    machine_menu.AdvanceK          = K_ADVANCE_EN;
 
     machine_menu.StepsConfTitle = STEPS_CONF_TITLE_EN;
     machine_menu.X_Steps        = X_STEPS_EN;
@@ -818,6 +822,9 @@ void disp_language_init() {
   printing_menu.temp1    = TEXT_VALUE;
   printing_menu.temp2    = TEXT_VALUE;
   printing_menu.bed_temp = TEXT_VALUE;
+
+  leveling_menu.temp1     = TEXT_VALUE;
+  leveling_menu.bed_temp  = TEXT_VALUE;
 
   filament_menu.stat_temp = TEXT_VALUE;
 
@@ -1404,6 +1411,7 @@ void disp_language_init() {
             leveling_menu.position3 = LEVELING_POINT3_TEXT_EN;
             leveling_menu.position4 = LEVELING_POINT4_TEXT_EN;
             leveling_menu.position5 = LEVELING_POINT5_TEXT_EN;
+
             //
             set_menu.title        = TITLE_SET_EN;
             set_menu.filesys      = FILESYS_TEXT_EN;
@@ -2670,6 +2678,7 @@ void disp_language_init() {
       leveling_menu.position3 = LEVELING_POINT3_TEXT_EN;
       leveling_menu.position4 = LEVELING_POINT4_TEXT_EN;
       leveling_menu.position5 = LEVELING_POINT5_TEXT_EN;
+      
       //
       set_menu.title        = TITLE_SET_EN;
       set_menu.filesys      = FILESYS_TEXT_EN;

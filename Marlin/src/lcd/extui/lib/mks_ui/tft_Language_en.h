@@ -156,6 +156,7 @@
 #define MAXFEEDRATE_CONF_EN             "Maximum speed settings"
 #define ACCELERATION_CONF_EN            "Acceleration settings"
 #define JERKCONF_EN                     "Jerk settings"
+#define ADVANCEK_EN                     "Linear Advance settings"
 #define STEPSCONF_EN                    "Steps settings"
 #define TMC_CURRENT_EN                  "TMC Current settings"
 #define TMC_STEP_MODE_EN                "TMC Step mode settings"
@@ -184,6 +185,9 @@
 #define Y_JERK_EN                       "Y-axis jerk speed"
 #define Z_JERK_EN                       "Z-axis jerk speed"
 #define E_JERK_EN                       "Extruder jerk speed"
+
+#define ADVANCEK_CONF_TITLE_EN          "Machine Settings>Advance K settings"
+#define K_ADVANCE_EN                    "Advance K"
 
 #define STEPS_CONF_TITLE_EN             "Machine Settings>Steps settings"
 #define X_STEPS_EN                      "X-axis steps"

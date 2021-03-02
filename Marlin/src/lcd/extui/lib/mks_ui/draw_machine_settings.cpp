@@ -35,7 +35,8 @@ enum {
   ID_MACHINE_RETURN = 1,
   ID_MACHINE_ACCELERATION,
   ID_MACHINE_FEEDRATE,
-  ID_MACHINE_JERK
+  ID_MACHINE_JERK,
+  ID_MACHINE_ADVANCEK
 };
 
 static void event_handler(lv_obj_t *obj, lv_event_t event) {
@@ -59,6 +60,9 @@ static void event_handler(lv_obj_t *obj, lv_event_t event) {
         lv_draw_jerk_settings();
         break;
     #endif
+    case ID_MACHINE_ADVANCEK:
+        lv_clear_machine_settings();
+        lv_draw_advancek_settings();
   }
 }
 
@@ -69,6 +73,7 @@ void lv_draw_machine_settings() {
   #if HAS_CLASSIC_JERK
     lv_screen_menu_item(scr, machine_menu.JerkConf, PARA_UI_POS_X, PARA_UI_POS_Y * 3, event_handler, ID_MACHINE_JERK, 2);
   #endif
+  lv_screen_menu_item(scr, machine_menu.AdvanceKConf,PARA_UI_POS_X,PARA_UI_POS_Y * 4, event_handler, ID_MACHINE_ADVANCEK, 3);
   lv_big_button_create(scr, "F:/bmp_back70x40.bin", common_menu.text_back, PARA_UI_BACL_POS_X + 10, PARA_UI_BACL_POS_Y, event_handler, ID_MACHINE_RETURN, true);
 }
 

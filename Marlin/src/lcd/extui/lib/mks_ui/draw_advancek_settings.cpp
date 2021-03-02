@@ -26,42 +26,43 @@
 #include "draw_ui.h"
 #include <lv_conf.h>
 
+#include "../../../../module/planner.h"
 #include "../../../../inc/MarlinConfig.h"
 
 extern lv_group_t *g;
 static lv_obj_t *scr;
-static lv_obj_t *fw_type, *board, *author, *printer;
 
-enum { ID_A_RETURN = 1 };
+enum {
+  ID_ADVANCEK_RETURN = 1,
+  ID_ADVANCEK_X
+};
 
 static void event_handler(lv_obj_t *obj, lv_event_t event) {
   if (event != LV_EVENT_RELEASED) return;
   switch (obj->mks_obj_id) {
-    case ID_A_RETURN:
-      clear_cur_ui();
+    case ID_ADVANCEK_RETURN:
+      lv_clear_advancek_settings();
       draw_return_ui();
+      break;
+    case ID_ADVANCEK_X:
+      value = KAdvance;
+      lv_clear_advancek_settings();
+      lv_draw_number_key();
       break;
   }
 }
 
-void lv_draw_about() {
-  scr = lv_screen_create(ABOUT_UI);
-  lv_big_button_create(scr, "F:/bmp_return.bin", common_menu.text_back, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_A_RETURN);
+void lv_draw_advancek_settings() {
+  char str_1[16];
+  scr = lv_screen_create(ADVANCEK_UI, machine_menu.AdvanceKConfTitle);
 
-  fw_type = lv_label_create(scr, "Firmware: Marlin " SHORT_BUILD_VERSION);
-  lv_obj_align(fw_type, nullptr, LV_ALIGN_CENTER, 0, 20);
+  sprintf_P(public_buf_l, PSTR("%s"), dtostrf(planner.extruder_advance_K[0], 1, 1, str_1));
+  lv_screen_menu_item_1_edit(scr, machine_menu.AdvanceK, PARA_UI_POS_X, PARA_UI_POS_Y, event_handler, ID_ADVANCEK_X, 0, public_buf_l);
 
-  board = lv_label_create(scr, "Board: " BOARD_INFO_NAME);
-  lv_obj_align(board, nullptr, LV_ALIGN_CENTER, 0, -20);
-
-  author = lv_label_create(scr,"Author: " STRING_CONFIG_H_AUTHOR);
-  lv_obj_align(author, nullptr, LV_ALIGN_CENTER, 0 ,-100);
-
-  printer = lv_label_create(scr,"Printer: " CUSTOM_MACHINE_NAME);
-  lv_obj_align(printer, nullptr, LV_ALIGN_CENTER, 0, -60);
+  lv_big_button_create(scr, "F:/bmp_back70x40.bin", common_menu.text_back, PARA_UI_BACL_POS_X, PARA_UI_BACL_POS_Y, event_handler, ID_ADVANCEK_RETURN, true);
 }
 
-void lv_clear_about() {
+void lv_clear_advancek_settings() {
   #if HAS_ROTARY_ENCODER
     if (gCfgItems.encoder_enable) lv_group_remove_all_objs(g);
   #endif
